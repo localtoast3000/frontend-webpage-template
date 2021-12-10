@@ -1,0 +1,41 @@
+@use 'sass:math';
+
+// Tints a given color by a given percentage
+@function tint($color, $percent) {
+  @return mix(white, $color, $percent);
+}
+
+// Shades a given color by a given percentage
+@function shade($color, $percent) {
+  @return mix(black, $color, $percent);
+}
+
+// Returns brightness of given color
+@function brightness($color) {
+  @return (math.div(((red($color)) + (green($color)) + (blue($color))), (255 * 3)));
+}
+
+// Takes a color, sets $dark as a shade of that color controled by $percentage
+// and sets $light as a tint of that color controled by $percentage
+// The brightness is calculated for the $color, $light and $dark variubles
+// Then the function compares the absolute difference in brightness $light and
+// $dark are from the original color.
+
+// If there is a larger difference between $light and $color, then the color must be
+// dark, so a lighter tint of $color will be returned
+// If there is a larger difference between $dark and $color, then the color must be
+// light, so a darker shade of $color will be returned
+@function contrast($color, $percentage) {
+  $dark: shade($color, $percentage);
+  $light: tint($color, $percentage);
+
+  @if $color == null {
+    @return null;
+  } @else {
+    $color-brightness: brightness($color);
+    $light-brightness: brightness($light);
+    $dark-brightness: brightness($dark);
+
+    @return if(abs($color-brightness - $light-brightness) > abs($color-brightness - $dark-brightness), $light, $dark);
+  }
+}

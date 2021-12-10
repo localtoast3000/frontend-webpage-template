@@ -1,0 +1,28 @@
+@use '../../abstracts/variubles/variubles_' as var;
+
+.bg-image-container {
+  z-index: var.$bg-index;
+  position: absolute;
+  top: 0;
+  left: 0px;
+  width: 100vw;
+  height: var.$lg-mobile-height;
+  overflow: hidden;
+}
+
+.bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: auto;
+  height: 100%;
+}
+
+.bg-image-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var.$lg-tv-width;
+  height: var.$lg-tv-height;
+  background: var.$bg-image-cover-grad;
+}

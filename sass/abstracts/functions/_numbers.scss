@@ -1,0 +1,102 @@
+@use 'sass:math';
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:string';
+@use 'sass:meta';
+
+// Sets the value type to a type number
+@function to-number($value) {
+  @if meta.type-of($value) == 'number' {
+    @return $value;
+  } @else if meta.type-of($value) != 'string' {
+    @error 'Value for `to-number` should be a number or a string.';
+  }
+
+  $result: 0;
+  $digits: 0;
+  $minus: string.slice($value, 1, 1) == '-';
+  $numbers: (
+    '0': 0,
+    '1': 1,
+    '2': 2,
+    '3': 3,
+    '4': 4,
+    '5': 5,
+    '6': 6,
+    '7': 7,
+    '8': 8,
+    '9': 9,
+  );
+
+  @for $i from if($minus, 2, 1) through string.length($value) {
+    $character: string.slice($value, $i, $i);
+
+    @if (list.index(map.keys($numbers), $character) or $character == '.') {
+      @if $character == '.' {
+        $digits: 1;
+      } @else if $digits == 0 {
+        $result: $result * 10 + map.get($numbers, $character);
+      } @else {
+        $digits: $digits * 10;
+        $result: $result + map.get($numbers, $character) / $digits;
+      }
+    }
+  }
+
+  @return if($minus, -$result, $result);
+}
+
+// Parses the unit from a given value and returns that unit
+@function parse-unit($value) {
+  @if meta.type-of($value) != 'string' {
+    @error 'Value for `parse-unit` should be a string.';
+  }
+
+  $units: (
+    'px': 1px,
+    'cm': 1cm,
+    'mm': 1mm,
+    '%': 1%,
+    'ch': 1ch,
+    'pc': 1pc,
+    'in': 1in,
+    'em': 1em,
+    'rem': 1rem,
+    'pt': 1pt,
+    'ex': 1ex,
+    'vw': 1vw,
+    'vh': 1vh,
+    'vmin': 1vmin,
+    'vmax': 1vmax,
+  );
+  $parsed-unit: false;
+
+  @each $unit in $units {
+    // str-index - find substring in a string
+    // 'px' in '10px' for example
+
+    // $unit is a pair of ['px': 1px] (item in $units)
+    // nth(['px': 1px], 1) returns 'px'
+    // nth(['px': 1px], 2) returns 1px
+
+    @if (string.index($value, list.nth($unit, 1))) {
+      $parsed-unit: list.nth($unit, 2);
+    }
+  }
+
+  @if (not $parsed-unit) {
+    @error 'Invalid unit `#{$value}`.';
+  }
+
+  @return $parsed-unit;
+}
+
+// Remove the unit from a given value
+@function strip-unit($value) {
+  @if meta.type-of($value) == 'string' {
+    $value: to-number($value);
+  } @else if meta.type-of($value) == 'number' and not math.is-unitless($value) {
+    @return math.div($value, ($value * 0 + 1));
+  }
+  @return $value;
+}

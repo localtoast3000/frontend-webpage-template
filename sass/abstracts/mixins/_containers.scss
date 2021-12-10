@@ -1,0 +1,6 @@
+// Basic container setup with
+@mixin container($max-width, $height) {
+  width: 100%;
+  max-width: $max-width;
+  height: $height;
+}

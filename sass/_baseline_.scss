@@ -1,0 +1,24 @@
+@use './abstracts/mixins/layouts' as mix;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body,
+section,
+footer,
+div {
+  @include mix.flex-layout(column, center, center);
+}
+
+header {
+  @include mix.flex-layout(column, center, flex-start);
+}

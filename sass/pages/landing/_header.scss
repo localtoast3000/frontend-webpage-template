@@ -1,0 +1,20 @@
+@use '../../abstracts/mixins/mixins_' as mix;
+@use '../../abstracts/variubles/variubles_' as var;
+
+.header-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.header {
+  @include mix.flex-layout(column, center, center);
+  text-align: center;
+  color: var.$header-text;
+  font-family: var.$header-font;
+  font-size: var.$header-size;
+  text-shadow: 2px 2px 20px var.$shadow-dark;
+  margin: var.$header-top-margin 30px var.$header-bottom-margin 30px;
+}

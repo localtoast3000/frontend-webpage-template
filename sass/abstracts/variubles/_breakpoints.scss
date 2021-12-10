@@ -1,0 +1,22 @@
+@use 'sass:math';
+
+$sm-mobile-width: math.div(320, 16) * 1em;
+$lg-mobile-width: math.div(480, 16) * 1em;
+$sm-tablet-width: math.div(600, 16) * 1em;
+$md-tablet-width: math.div(800, 16) * 1em;
+$lg-tablet-width: math.div(1280, 16) * 1em;
+$md-desktop-width: math.div(1366, 16) * 1em;
+$lg-desktop-width: math.div(1920, 16) * 1em;
+$lg-tv-width: math.div(3840, 16) * 1em;
+
+$sm-flipped-mobile-height: math.div(270, 16) * 1em;
+$lg-flipped-mobile-height: math.div(480, 16) * 1em;
+$sm-flipped-tablet-height: math.div(600, 16) * 1em;
+$md-flipped-tablet-height: math.div(800, 16) * 1em;
+$lg-flipped-tablet-height: math.div(1280, 16) * 1em;
+
+$sm-mobile-height: math.div(568, 16) * 1em;
+$lg-mobile-height: math.div(896, 16) * 1em;
+$md-tablet-height: math.div(1024, 16) * 1em;
+$lg-tablet-height: math.div(1366, 16) * 1em;
+$lg-tv-height: math.div(2160, 16) * 1em;

@@ -1,0 +1,25 @@
+@use './abstracts/variubles/variubles_' as var;
+
+@media (max-height: var.$sm-mobile-height) {
+  .header {
+    margin-bottom: var.$header-bottom-margin + 60;
+  }
+}
+@media (min-width: var.$sm-tablet-width) {
+  .bg-image-container {
+    height: var.$lg-tablet-height;
+  }
+
+  .bg-image-cover {
+    height: var.$lg-tablet-height;
+  }
+}
+@media (min-width: var.$lg-desktop-width) {
+  .bg-image-container {
+    height: var.$lg-tv-height;
+  }
+
+  .bg-image-cover {
+    height: var.$lg-tv-height;
+  }
+}

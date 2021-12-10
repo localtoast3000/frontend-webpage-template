@@ -1,0 +1,18 @@
+@use 'sass:math';
+@use '../../abstracts/functions/functions_' as func;
+@use '../../abstracts/variubles/variubles_' as var;
+@use '../../abstracts/mixins/mixins_' as mix;
+
+.logo-container {
+  max-width: var.$logo-container-size;
+  height: var.$logo-container-size;
+}
+
+.logo {
+  color: var.$logo-color;
+  font-size: var.$logo-size;
+  font-weight: var.$logo-weight;
+  font-family: var.$logo-font;
+  text-shadow: 2px 0px 20px var.$logo-shadow;
+  @include mix.rotate('left', 30);
+}

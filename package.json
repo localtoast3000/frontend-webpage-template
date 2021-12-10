@@ -1,0 +1,14 @@
+{
+  "name": "frontend-webpage-template",
+  "version": "1.0.0",
+  "description": "Frontend Webpage Template",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch sass/main.scss public/assets/css/main.css"
+  },
+  "type": "module",
+  "author": "Craig Chick",
+  "license": "ISC",
+  "devDependencies": {},
+  "dependencies": {}
+}

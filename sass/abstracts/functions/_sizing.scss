@@ -1,0 +1,9 @@
+// A function that checks a size relative to the $relative-to value.
+// If $relative-to is smaller than $check-size, the $adjust-to size will
+// be returned, else the $defult-size wil be returned
+@function adjust-size($check-size, $relative-to, $adjust-to, $default-size) {
+  @if ($relative-to < $check-size) {
+    @return $adjust-to;
+  }
+  @return $default-size;
+}
